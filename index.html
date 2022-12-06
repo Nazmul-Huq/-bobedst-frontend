@@ -4,7 +4,7 @@
 <head>
 
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
     <script>
         $(function () {
@@ -20,103 +20,125 @@
 <body>
     <div id="header"></div>
     <br>
-    
+    <br>
 
 
     <div id="body-content">
         <!--min egen body content starter her-->
 
-        <section class="text-center"> 
+        <section class="text-center">
             <div class="container">
                 <div class="row">
                     <div class="col-sm">
                         <h5>Information</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
                             card's content.</p>
                     </div>
                     <div class="col-sm">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                card's content.</p>
-                            <a href="/overview.html" class="card-link">Undersøg</a>
-                            <a href="#" class="card-link">Book et møde</a>
+                        <h5 class="card-title">Card title</h5>
+                        <br>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        <a href="/overview.html" class="card-link">Undersøg</a>
+                        <a href="#" class="card-link">Book et møde</a>
                     </div>
                 </div>
-            </div>     
+            </div>
         </section>
-
-        <section class="text-center"> 
-            <div class="container">
+        <br>
+        <br>
+        <section class="text-center">
+            <div class="container" id="carousel-box">
                 <div class="row">
                     <!-- <div class="col-md"> -->
-                        <div id="CarouselDark" class="carousel carousel-dark slide" data-bs-ride="caorusel">
-                            <div class="carousel-indicators">
-            
-                                <button type="button" data-bs-target="#CarouselDark" data-bs-slide-to="0" class="active"
-                                    aria-current="true" aria-label="Slide 1"> </button>
-            
-                                <button type="button" data-bs-target="#CarouselDark" data-bs-slide-to="1"
-                                    aria-label="Slide 2"></button>
-                                    
-                                <button type="button" data-bs-target="#CarouselDark" data-bs-slide-to="2"
-                                    aria-label="Slide 3"></button>
-            
-                            </div>
-                            <div class="carousel-inner">
+                    <div id="CarouselDark" class="carousel carousel-dark slide" data-bs-ride="caorusel">
+                        <div class="carousel-indicators">
 
-                                <div class="carousel-item active" data-bs-interval="10000">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg">
-                                                <img src="/images/Bredegade 66 a, 1 plantegning[688].jpg" class="d-block w-100" alt="">
-                                            </div>
-                                            <div class="col-lg">
-                                                    <h5>Første slide Caption</h5>
-                                                      <p>text</p>
-                                            </div>
+                            <button type="button" data-bs-target="#CarouselDark" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1"> </button>
+
+                            <button type="button" data-bs-target="#CarouselDark" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+
+                            <button type="button" data-bs-target="#CarouselDark" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+
+                        </div>
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item active" data-bs-interval="10000">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg">
+                                            <img src="/images/Bredegade 66 a, 1 plantegning[688].jpg"
+                                                class="d-block w-100" alt="">
+                                        </div>
+                                        <div class="col-lg">
+                                            <h5>Første slide Caption</h5>
+                                            <p>text</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="carousel-item">
-                                    <img src="images/Plantegning bredegade 66b, 1[687].jpg" class=" d-block w-100" alt="">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Anden slide Caption</h5>
-                                        <p>text</p>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg">
+                                            <img src="images/Plantegning bredegade 66b, 1[687].jpg"
+                                                class=" d-block w-100" alt="">
+                                        </div>
+                                        <div class="col-lg text-center">
+                                            <h5>Anden slide Caption</h5>
+                                            <p>text</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="carousel-item">
-                                    <img src="images/Plantegning bredegade 66b, 1[687].jpg" class="d-block w-100" alt="">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Trejde slide Caption</h5>
-                                        <p>text</p>
-                                    </div>
-                                </div>    
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#CarouselDark" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#CarouselDark" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">next</span>
-                            </button>
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg">
+                                            <img src="images/Plantegning bredegade 66b, 1[687].jpg"
+                                                class="d-block w-100" alt="">
+                                        </div>
+                                        <div class="col-lg">
+                                            <h5>Trejde slide Caption</h5>
+                                            <p>text</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
-                    
-                          </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#CarouselDark"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#CarouselDark"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">next</span>
+                        </button>
                     </div>
                 </div>
-            </div>     
-        </section>
+
+            </div>
+    </div>
+    </div>
+    </div>
+    </section>
 
 
 
 
 
-        
 
-        <!--min egen body content slutter her-->
+
+    <!--min egen body content slutter her-->
     </div>
     <div id="footer"></div>
 </body>
