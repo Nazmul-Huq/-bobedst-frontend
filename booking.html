@@ -49,40 +49,20 @@
                     <tbody>
                       <tr>
                         <td>
-                            <ul class="list-group w-100">
-                                <li class="list-group-item"><input class="btn btn-primary" type="button" value="08.00-08-15"></li>
-                                <li class="list-group-item"><input class="btn btn-primary" type="button" value="08.16-08-30"></li>
-                                <li class="list-group-item">A third item</li>
-                                <li class="list-group-item">A fourth item</li>
-                                <li class="list-group-item">And a fifth one</li>
-                              </ul>
+                            <ul class="list-group w-100">    
+                            </ul>
                         </td>
                         <td>
                             <ul class="list-group w-100">
-                                <li class="list-group-item"><input class="btn btn-primary" type="button" value="08.00-08-15"></li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                                <li class="list-group-item">A fourth item</li>
-                                <li class="list-group-item">And a fifth one</li>
-                              </ul>
+                            </ul>
                         </td>
                         <td>
                             <ul class="list-group w-100">
-                                <li class="list-group-item"><input class="btn btn-primary" type="button" value="08.00-08-15"></li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                                <li class="list-group-item">A fourth item</li>
-                                <li class="list-group-item">And a fifth one</li>
-                              </ul>
+                            </ul>
                         </td>
                         <td>
                             <ul class="list-group w-100">
-                                <li class="list-group-item"><input class="btn btn-primary" type="button" value="08.00-08-15"></li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                                <li class="list-group-item">A fourth item</li>
-                                <li class="list-group-item">And a fifth one</li>
-                              </ul>
+                            </ul>
                         </td>
                         <td>
                             <ul class="list-group w-100">
@@ -95,27 +75,22 @@
                               </ul>
                         </td>
                         <td>
-                            <ul class="list-group w-100">
-                                <li class="list-group-item"><input class="btn btn-primary" type="button" value="08.00-08-15"></li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                                <li class="list-group-item">A fourth item</li>
-                                <li class="list-group-item">And a fifth one</li>
-                              </ul>
+                            <ul class="list-group w-100">                          
+                            </ul>
                         </td>
                         <td>
                             <ul class="list-group w-100">
-                                <li class="list-group-item"><input class="btn btn-primary" type="button" value="08.00-08-15"></li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                                <li class="list-group-item">A fourth item</li>
-                                <li class="list-group-item">And a fifth one</li>
-                              </ul>
+                            </ul>
                         </td>
                       </tr>
                     </tbody>
                   </table>
             </div>
+            <p>
+              <label for="week-selection">Uge No: </label>
+              <select id="week-selection">
+              </select>
+            </p>
         </div>
 
 
@@ -124,6 +99,53 @@
     <div id="footer"></div>
 
     <script>
+      
+      window.onload = makeWeekSelectionDiv()
+
+      /*
+      * make the week selection div
+      */
+      function makeWeekSelectionDiv(){
+
+        weekNumber = getCurrentWeekNumber() // first get the current week number
+
+        let options =`
+        <option value="${weekNumber}">Week ${weekNumber} </option>
+        <option value="${weekNumber+1}">Week ${weekNumber+1}</option>
+        <option value="${weekNumber+2}">Week ${weekNumber+2}</option>
+        <option value="${weekNumber+3}">Week ${weekNumber+3}</option>
+        `
+        $('#week-selection').append(options)
+      }
+
+
+
+      $(function() {
+        $('#week-selection').on('change', function(event) {
+          var selectedWeek = $(this).val();
+          console.log(selectedWeek);
+
+        });
+      });
+    
+
+      const makeBookingInformationPage = async () =>{
+        var today = new Date();
+        startDate = new Date(currentDate.getFullYear(), 0, 1);
+        // var day = today.toLocaleDateString('en-US', {weekday: 'long'})
+        
+        // var dd = String(today.getDate()).padStart(2, '0');
+        // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        // var yyyy = today.getFullYear();
+
+       
+        // const response = await fetch('http://localhost:8080/api/v1/shift/get-by-date', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(Object.fromEntries(formData))
+        //     //body: (today)
+        // });
+      }
 
     const propertyId = 123;
 
@@ -138,6 +160,19 @@
       timeDiv.innerText = `${value}`
       bookingConfirmButton.innerHTML = `<a href="/booking-information.html?date=${date}&time=${value}&propertyId=${propertyId}"><input type="submit" value="Bestil Tid"/></a>`;
     }
+
+
+    
+      /*
+      function to get the current week number
+      */
+      function getCurrentWeekNumber(){
+        var today = new Date();
+        yearStartDate = new Date(today.getFullYear(), 0, 1);
+        var days = Math.floor((today - yearStartDate) / (24 * 60 * 60 * 1000));          
+        var weekNumber = Math.ceil(days / 7);
+        return weekNumber;
+      }
     </script>
 </body>
 
