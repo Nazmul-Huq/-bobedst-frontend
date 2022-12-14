@@ -45,7 +45,7 @@
     float: right;
     width: 40%;
     height: auto;
-    background-color: #008080;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border: #008080;
     padding: auto;
     margin-right: 1rem;

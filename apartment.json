@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "location": "Slagelse",
+        "size": "64",
+        "room": "3",
+        "storageRoom": "true",
+        "laundryRoom": "true",
+        "rent": "7000",
+        "paymentToHeat": "600",
+        "paymentToWater": "400",
+        "deposit": "20997",
+        "prepaidRent": "13998",
+        "text": "Beliggende ved en sø i skovkanten"
+    }
+]
