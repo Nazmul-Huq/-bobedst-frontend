@@ -2,7 +2,7 @@ function toggleCard(cardId){
 
     let card = document.getElementById(cardId)
     let btn = document.getElementById("btn-" + cardId)
-    let link = document.getElementById("card-img")
+    let link = document.getElementById("card-img-" + cardId)
 
     if(card.classList.contains("disabled", "card-img")) {
         //Enabling.
