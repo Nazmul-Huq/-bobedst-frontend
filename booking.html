@@ -23,74 +23,40 @@
     <div id="body-content">
         <!--min egen body content starter her-->
 
-        <div id="booking-timetable" class="container">
-            <div class="h1 text-center">Book en Fremvisning</div>
-            <div class="h4 text-center">Uge - 4 (18-11-2022 til 25-11-2022)</div>
-            <p id="booking-confirm-div">
-              Please select a time from below list and click on Book to make the booking
-              Date: <span id="date-div"></span>
-              Time: <span id="time-div"></span>
-              <span id="booking-confirm-button"></span>
-
-            </p>
-            <div  class="table-responsive-md">
+        <div id="booking-timetable" class="container text-center">
+          <div class="h1">Book en Fremvisning</div>
+          <div class="h5 bg-primary" id="booking-confirm-button"></div>
+          <div  class="table-responsive-md">
                 <table class="table">
-                    <thead>
+                    <thead id="table-head-info">
                       <tr>
-                        <th scope="col">Dag og Dato</th>
-                        <th scope="col">Dag og Dato</th>
-                        <th scope="col">Dag og Dato</th>
-                        <th scope="col">Dag og Dato</th>
-                        <th scope="col">Dag og Dato</th>
-                        <th scope="col">Dag og Dato</th>
-                        <th scope="col">Dag og Dato</th>
+                        <td id="table-head-col-previous"></td>
+                        <td id="table-head-col-1"></td>
+                        <td id="table-head-col-2"></td>
+                        <td id="table-head-col-3"></td>
+                        <td id="table-head-col-4"></td>
+                        <td id="table-head-col-5"></td>
+                        <td id="table-head-col-6"></td>
+                        <td id="table-head-col-7"></td>
+                        <td id="table-head-col-next"></td>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>
-                            <ul class="list-group w-100">    
-                            </ul>
-                        </td>
-                        <td>
-                            <ul class="list-group w-100">
-                            </ul>
-                        </td>
-                        <td>
-                            <ul class="list-group w-100">
-                            </ul>
-                        </td>
-                        <td>
-                            <ul class="list-group w-100">
-                            </ul>
-                        </td>
-                        <td>
-                            <ul class="list-group w-100">
-                                <li class="list-group-item"><input class="btn btn-primary" type="button" value="08.00-08-15" onclick="makeBooking(this.value, '10-10-2021')"></li>
-                                <li class="list-group-item"><input class="btn btn-primary" type="button" value="08.16-08-30" onclick="makeBooking(this.value,  '11-10-2021')"></li>
-                                <li class="list-group-item"><input class="btn btn-primary" type="button" value="08.00-08-15"></li>
-                                <li class="list-group-item"><input class="btn btn-primary" type="button" value="08.00-08-15"></li>
-                                <li class="list-group-item"><input class="btn btn-primary" type="button" value="08.00-08-15"></li>
-
-                              </ul>
-                        </td>
-                        <td>
-                            <ul class="list-group w-100">                          
-                            </ul>
-                        </td>
-                        <td>
-                            <ul class="list-group w-100">
-                            </ul>
-                        </td>
+                        <td></td>
+                        <td id="table-body-col-1"></td>
+                        <td id="table-body-col-2"></td>
+                        <td id="table-body-col-3"></td>
+                        <td id="table-body-col-4"></td>
+                        <td id="table-body-col-5"></td>
+                        <td id="table-body-col-6"></td>
+                        <td id="table-body-col-7"></td>
+                        <td></td>
                       </tr>
                     </tbody>
                   </table>
-            </div>
-            <p>
-              <label for="week-selection">Uge No: </label>
-              <select id="week-selection">
-              </select>
-            </p>
+                  <div ></div>
+          </div>
         </div>
 
 
@@ -99,80 +65,96 @@
     <div id="footer"></div>
 
     <script>
-      
-      window.onload = makeWeekSelectionDiv()
+      var today = new Date();
+      var dd;
+      var mm;
+      var yyyy;
+      var next7DaysStartDate;
+      var previous7DaysStartDate;
+      const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+];
+      const makeBookingInformationPage = async (firstDay) =>{
+        // make the previous button
+        if (firstDay!==today) {
+          previous7DaysStartDate = new Date(firstDay.getFullYear(),firstDay.getMonth(),firstDay.getDate()-7)
+          let nextButton = `<button type="button" id="next-button" class="btn" value="${next7DaysStartDate}" onclick="myFunction()">Next</button>`
+          let previousButton = `<button type="button" class="btn" onclick="makePrevious7days()">Previous</button>`
+          document.getElementById('table-head-col-previous').innerHTML= `${previousButton}`            
+        }
 
-      /*
-      * make the week selection div
-      */
-      function makeWeekSelectionDiv(){
+          // start a for loop to make the 7 days available booking slot
+          for (let index = 0; index < 7 ; index++) {
 
-        weekNumber = getCurrentWeekNumber() // first get the current week number
+            // make the table head
+            var day = firstDay;
+            var nextDay=new Date(day.getFullYear(),day.getMonth(),day.getDate()+index);
+            dd = String(nextDay.getDate()).padStart(2, '0');
+            var dayName = weekday[(nextDay.getDay())]
+            mm = String(nextDay.getMonth() + 1).padStart(2, '0');
+            var monthName = monthNames[(nextDay.getMonth())]
+            yyyy = nextDay.getFullYear()
 
-        let options =`
-        <option value="${weekNumber}">Week ${weekNumber} </option>
-        <option value="${weekNumber+1}">Week ${weekNumber+1}</option>
-        <option value="${weekNumber+2}">Week ${weekNumber+2}</option>
-        <option value="${weekNumber+3}">Week ${weekNumber+3}</option>
-        `
-        $('#week-selection').append(options)
-      }
+            var tableHeadCol = "table-head-col-"+(index+1)
+            document.getElementById(tableHeadCol).innerHTML= `${dayName}<br>${dd}. ${monthName}`
 
-
-
-      $(function() {
-        $('#week-selection').on('change', function(event) {
-          var selectedWeek = $(this).val();
-          console.log(selectedWeek);
-
-        });
-      });
-    
-
-      const makeBookingInformationPage = async () =>{
-        var today = new Date();
-        startDate = new Date(currentDate.getFullYear(), 0, 1);
-        // var day = today.toLocaleDateString('en-US', {weekday: 'long'})
         
-        // var dd = String(today.getDate()).padStart(2, '0');
-        // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        // var yyyy = today.getFullYear();
+            
+            var date = yyyy + '-' + mm + '-' + dd;
+           const formData = new FormData()
+           formData.append("date", date)
+      
+           const response = await fetch('http://localhost:8080/api/v1/booking-slot/get-available-booking-slot', {
+             method: 'POST',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify(Object.fromEntries(formData))
+            });
+            const result = await response.json();
+            if (result.length!==0) {
+              console.log(result.length)
+              let ulStart = `<ul class="list-group w-100">`
+              for(let i = 0; i < result.length; i++){
+                let bookingSlot = `<li class="list-group-item"><input class="btn btn-primary" type="button" value="${result[i].time}" onclick="makeBooking(this.value, ${dd}, ${mm}, ${yyyy}, ${result[i].id})"></li>`
+                ulStart+=bookingSlot
+              }
+              let tableBodyCol = "table-body-col-"+(index+1)
+
+              let ulClose = `</ul>`
+              let ul = ulStart+ulClose
+              document.getElementById(tableBodyCol).innerHTML= `${ul}`
+            } else {
+              let tableBodyCol = "table-body-col-"+(index+1)
+              document.getElementById(tableBodyCol).innerHTML= "ingen tid"
+            } // if (result.length!=0) ends here
+          }
+
+            // make the next button
+            next7DaysStartDate = new Date(firstDay.getFullYear(),firstDay.getMonth(),firstDay.getDate()+7)
+            let nextButton = `<button type="button" class="btn" onclick="makeNext7days()">Next</button>`
+            document.getElementById('table-head-col-next').innerHTML= `${nextButton}`
+          
+
+        } // makeBookingInformationPage() ends here
 
        
-        // const response = await fetch('http://localhost:8080/api/v1/shift/get-by-date', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(Object.fromEntries(formData))
-        //     //body: (today)
-        // });
-      }
+        function makeNext7days(){
+          makeBookingInformationPage(next7DaysStartDate)    
+        }
 
-    const propertyId = 123;
-
-    function makeBooking(value, date){
-      const bookingConfirmButton = document.getElementById('booking-confirm-button');
-      const dateDiv = document.getElementById('date-div');
-      const timeDiv = document.getElementById('time-div');
-      const propertyDiv = ``
-
-     
-      dateDiv.innerHTML = `${date}`
-      timeDiv.innerText = `${value}`
-      bookingConfirmButton.innerHTML = `<a href="/booking-information.html?date=${date}&time=${value}&propertyId=${propertyId}"><input type="submit" value="Bestil Tid"/></a>`;
-    }
+        function makePrevious7days(){
+          makeBookingInformationPage(previous7DaysStartDate)    
+        }
 
 
-    
-      /*
-      function to get the current week number
-      */
-      function getCurrentWeekNumber(){
-        var today = new Date();
-        yearStartDate = new Date(today.getFullYear(), 0, 1);
-        var days = Math.floor((today - yearStartDate) / (24 * 60 * 60 * 1000));          
-        var weekNumber = Math.ceil(days / 7);
-        return weekNumber;
-      }
+        const propertyId = 123;
+
+        function makeBooking(value, day, month, year, bookingSlotId){
+          const bookingConfirmButton = document.getElementById('booking-confirm-button');
+           bookingConfirmButton.innerHTML = `Date: ${day}-${month}-${year} Time: ${value} <a href="/booking-information.html?date=${day}-${month}-${year}&time=${value}&bookingSlotId=${bookingSlotId}&propertyId=${propertyId}"><input class="btn btn-info btn-lg" type="submit" value="Bestil"/></a>`;
+        }
+
+        window.onload = makeBookingInformationPage(today)
+
     </script>
 </body>
 
