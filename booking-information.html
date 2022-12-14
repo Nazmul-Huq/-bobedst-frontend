@@ -22,12 +22,13 @@
     <br>
     <div id="body-content">
         <!--min egen body content starter her-->
+        <div class="container">
+        <div id="property-id-div" class="mb-3"></div>        
+        <div id="date-div" class="mb-3"></div>
+        <div id="time-div" class="mb-3"></div>
+        <form style="font-weight: bold; margin: auto;" id="booking-information-form">
 
-        <form style="font-weight: bold; margin: auto; width: 50%" id="booking-information-form">
-            <div class="mb-3"> Property Id: 10211</div>
-            <div class="mb-3"> Date: 10-10-2022</div>
-            <div class="mb-3"> Time: 10.01-10-15</div>
-            <input type="hidden" class="form-control" id="date" name="date" value="10-10-2022">
+            <input type="hidden" class="form-control" id="booking-slot-id" name="bookingSlotId">
 
             <div class="mb-3">
                 <label for="name" class="form-label font-weight-bold">Fulld Navn:</label>
@@ -48,7 +49,7 @@
                 <button onclick="window.location.href='/booking.html?propertyId='" class="btn">Annuller</button>
             </div>  -->
         </form>
-        
+    </div>
         <!--min egen body content slutter her-->
     </div>
     <div id="footer"></div>
@@ -59,15 +60,35 @@
         thisForm.addEventListener('submit', async function (e) {
             e.preventDefault();
             const formData = new FormData(thisForm).entries()
-            const response = await fetch('http://localhost:8080/api/v1/activity', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(Object.fromEntries(formData))
-            });
-            const result = await response.json();
+            console.log("Booking slot id "+formData.bookingSlotId)
+            const response = await fetch('http://localhost:8080/api/v1/booking/save', {
+                 method: 'POST',
+                 headers: { 'Content-Type': 'application/json' },
+                 body: JSON.stringify(Object.fromEntries(formData))
+             });
+             const result = await response.json();
             // here we can check the result and based on result we can redirect to new page or show error message
-            window.location.href = "/booking-success.html"; // this will redirect to the new page
+            window.location.href = "/booking.html"; // this will redirect to the new page
         });
+
+        function makeBookingInfoTop(){
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const propertyId = urlParams.get('propertyId');
+            const bookingSlotId = urlParams.get('bookingSlotId')
+            const time = urlParams.get('time')
+            const date = urlParams.get('date')
+
+            document.getElementById('property-id-div').innerHTML = "Property Id: "+propertyId;
+            document.getElementById('date-div').innerHTML = "Dato: "+date;
+            document.getElementById('time-div').innerHTML = "Tid: "+time;
+            document.getElementById('booking-slot-id').value = bookingSlotId;
+
+
+
+        }
+
+        window.onload = makeBookingInfoTop();
     
     
       </script>  
