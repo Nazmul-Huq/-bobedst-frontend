@@ -1,10 +1,7 @@
 var endPointUrl;
 
-window.onload = function apartment(){
-    getIdFromUrl();
-}
-
-function getIdFromUrl(){
+function setUpEvents(){
+    
     const queryString = window.location.search;
     console.log(queryString)
     const urlParams = new URLSearchParams(queryString);
@@ -13,7 +10,7 @@ function getIdFromUrl(){
     console.log(id)
     endPointUrl = 'http://localhost:8080/getApartment/{id}'+id;
     console.log(endPointUrl);
-}
+
 
 const getApartment = async () => {
     const response = await fetch(endPointUrl, {
@@ -39,3 +36,8 @@ document.getElementById('paymentToWater').value = individualApartment.paymentToW
 document.getElementById('deposit').value = individualApartment.deposit;
 document.getElementById('prepaidRent').value = individualApartment.prepaidRent;
 }
+}
+
+window.onload = function(){
+    setUpEvents();
+};
