@@ -1,42 +1,44 @@
 var endPointUrl;
 
 function setUpEvents(){
-    
+    //console.log("setUpEvents")
     const queryString = window.location.search;
-    console.log(queryString)
+    //console.log(queryString)
     const urlParams = new URLSearchParams(queryString);
-    console.log(queryString)
+    //console.log(queryString)
     const id = urlParams.get('id');
-    console.log(id)
-    endPointUrl = 'http://localhost:8080/getApartment/{id}'+id;
-    console.log(endPointUrl);
+    //console.log(id)
+    endPointUrl = 'http://localhost:8080/getApartment/'+id;
+
+    getApartment()
+
+}
 
 
 const getApartment = async () => {
-    const response = await fetch(endPointUrl, {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json'
-    }
+    const response = await fetch(endPointUrl, 
+        {method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+        }
+                                )
+var individualApartment = await response.json();
+console.log(individualApartment.id)
+
+document.getElementById('id').innerHTML = individualApartment.id;
+document.getElementById('location').innerHTML = individualApartment.location;
+document.getElementById('size').innerHTML = individualApartment.size;
+document.getElementById('room').innerHTML = individualApartment.room;
+document.getElementById('storageRoom').innerHTML = individualApartment.storageRoom;
+document.getElementById('laundryRoom').innerHTML = individualApartment.laundryRoom;
+document.getElementById('rent').innerHTML = individualApartment.rent;
+document.getElementById('paymentToHeat').innerHTML = individualApartment.paymentToHeat;
+document.getElementById('paymentToWater').innerHTML = individualApartment.paymentToWater;
+document.getElementById('deposit').innerHTML = individualApartment.deposit;
+document.getElementById('prepaidRent').innerHTML = individualApartment.prepaidRent;
+document.getElementById('text').innerHTML = individualApartment.text;
+
+}
     
-});
-console.log(data)
-
-var individualApartment = await Response.json();
-
-document.getElementById('id').value = individualApartment.id;
-document.getElementById('location').value = individualApartment.location;
-document.getElementById('size').value = individualApartment.size;
-document.getElementById('room').value = individualApartment.room;
-document.getElementById('storageRoom').value = individualApartment.storageRoom;
-document.getElementById('laundryRoom').value = individualApartment.laundryRoom;
-document.getElementById('rent').value = individualApartment.rent;
-document.getElementById('paymentToHeat').value = individualApartment.paymentToHeat;
-document.getElementById('paymentToWater').value = individualApartment.paymentToWater;
-document.getElementById('deposit').value = individualApartment.deposit;
-document.getElementById('prepaidRent').value = individualApartment.prepaidRent;
-}
-}
 
 window.onload = function(){
     setUpEvents();
